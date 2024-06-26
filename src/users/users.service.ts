@@ -33,6 +33,16 @@ export class UsersService {
     return this.userModel.findOne({ _id: id });
   }
 
+  findOneByEmail(email: string) {
+    return this.userModel.findOne({
+      email,
+    });
+  }
+
+  checkEqualPassword(password: string, hashedPassword: string) {
+    return bcrypt.compareSync(password, hashedPassword);
+  }
+
   async update(updateUserDto: UpdateUserDto) {
     return this.userModel.updateOne(
       {
